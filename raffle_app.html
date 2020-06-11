@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Randomization App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="jumbotron text-center">
+    <h1>Raffle Draw Event - Randomization App</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div>
+          <h3>ML Entries</h3>
+          <input type="text" id="ml_id"/>
+          <a href="#" id="btn_add" class="btn btn-primary" onclick="addUser()">Add Id</a>
+          <a href="#" id="btn_random" class="btn btn-danger" onclick="randomPick()">Draw Random Id</a>
+        </div>
+        <div>
+          <h3>List of ML IDs</h3>
+          <div id="ml_view"></div>
+        </div>
+      </div>
+      <div class="col-lg-6" id="raffle_winner">
+        <h3>Raffle Winner</h3>
+        <h2>Congratulations</h2>
+        <center></center>
+      </div>
+    </div>
+  </div>
+</body>
+  <script type="text/javascript">
+    var store_ids = [];
+    function addUser(){
+      console.log($("#ml_id").val()); //<----- useful in debugging
+      store_ids.push($("#ml_id").val());
+      console.log(store_ids); //
+      alert(store_ids);
+      //show data in 
+      var htmlText = '';
+      $.each(store_ids,function(index,value){
+          htmlText += value + "<br/>";
+      });
+      console.log(htmlText);
+      $("#ml_view").html(htmlText);
+    }
+
+    //randomization code for raffle
+    function randomPick(){
+      var rand = Math.floor(Math.random()*store_ids.length);
+      console.log(rand);
+      $("#raffle_winner center").html(store_ids[rand]);
+    }
+  </script>
+</html>
